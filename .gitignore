@@ -1,0 +1,6 @@
+*.sqlite
+gradle/**
+.gradle
+.idea
+build
+target

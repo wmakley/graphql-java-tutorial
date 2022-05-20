@@ -1,0 +1,34 @@
+type Query {
+  userAll: [User]!
+  userById(id: ID!): User
+
+  postAll: [Post]!
+  postByPostId(id: ID!): Post
+  postByUserId(userId: ID!): [Post]
+}
+
+type Mutation {
+    createUser(fullName: String!, email: String!, dob: String!, gender: String!, presentAddress: String, permanentAddress: String): User!
+    createPost(userId: Int!, title: String!, description: String!, publishedDate: String!): Post!
+    deletePostById(postId:ID):Boolean
+}
+
+
+type User {
+  id: Int!
+  email: String!
+  fullName: String!
+  presentAddress: String
+  permanentAddress: String
+  gender: String!
+  dob: String!
+  postsById: [Post]
+}
+
+type Post {
+  id: Int!
+  userByUserId: User!
+  title: String!
+  description: String!
+  publishedDate: String!
+}

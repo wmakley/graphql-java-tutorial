@@ -1,0 +1,43 @@
+buildscript {
+    dependencies {
+        classpath 'com.h2database:h2:1.4.197'
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'org.flywaydb.flyway' version '8.5.11'
+}
+
+group 'dev.willmakley'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+flyway {
+    url = 'jdbc:sqlite:file:./blog.sqlite'
+    user = 'sa'
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // GraphQL dependencies
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
+    runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0'
+
+    // Database dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.6.8.Final'
+    runtimeOnly 'mysql:mysql-connector-java'
+}
+
+test {
+    useJUnitPlatform()
+}

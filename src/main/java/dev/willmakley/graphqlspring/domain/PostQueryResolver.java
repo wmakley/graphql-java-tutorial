@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public class PostQueryResolver implements GraphQLQueryResolver {
-    private PostService postService;
+    private final PostService postService;
 
     public PostQueryResolver(PostService postService) {
         this.postService = postService;

@@ -4,7 +4,7 @@ package dev.willmakley.graphqlspring.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post", schema = "blog")
+@Table(name = "post")
 public class PostEntity {
     private int id;
     private String title;

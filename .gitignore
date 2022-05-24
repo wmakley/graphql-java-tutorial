@@ -1,5 +1,5 @@
 *.sqlite
-gradle/**
+*.jar
 .gradle
 .idea
 build

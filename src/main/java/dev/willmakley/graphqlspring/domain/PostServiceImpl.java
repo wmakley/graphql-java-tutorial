@@ -3,7 +3,9 @@ package dev.willmakley.graphqlspring.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public PostEntity createPost(Integer userId, String title, String description, String postDate) {
         logger.debug( "createPost" );
 
@@ -41,6 +44,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public PostEntity findByPostId(Integer postId) {
         logger.debug( "findByPostId" );
         Optional<PostEntity> postEntityOptional = postRepository.findById(postId);
@@ -48,12 +52,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public List<PostEntity> findByUserId(Integer userId) {
         logger.debug( "findByUserId" );
         return postRepository.findAllByUserId(userId);
     }
 
     @Override
+    @Transactional
     public List<PostEntity> findAll( Set<SubFetch> subFetchSet ) {
         logger.debug( "findAll subFetchSet={}", subFetchSet );
         if ( subFetchSet.contains( SubFetch.UserByUserId )) {
@@ -63,6 +69,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public boolean deletePostById(Integer postId) {
         logger.debug( "deletePostById" );
         Optional<PostEntity> postEntityOptional = postRepository.findById(postId);

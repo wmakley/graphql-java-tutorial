@@ -3,6 +3,7 @@ package dev.willmakley.graphqlspring.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserEntity createUser(String fullName, String email, String gender, String dob,
                                  String presentAddress,
                                  String permanentAddress) {
@@ -34,6 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserEntity findById(Integer id) {
         logger.debug( "findById" );
         Optional<UserEntity> userEntityOptional = userRepository.findById(id);
@@ -41,6 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<UserEntity> findAll() {
         logger.debug( "findAll" );
         return userRepository.findAll();

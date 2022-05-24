@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -53,8 +54,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostEntity> findAll() {
-        logger.debug( "findAll" );
+    public List<PostEntity> findAll( Set<SubFetch> subFetchSet ) {
+        logger.debug( "findAll subFetchSet={}", subFetchSet );
+        if ( subFetchSet.contains( SubFetch.UserByUserId )) {
+            return postRepository.findAllIncludingUsers();
+        }
         return postRepository.findAll();
     }
 

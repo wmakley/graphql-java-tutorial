@@ -87,7 +87,7 @@ public class UserEntity {
         this.permanentAddress = permanentAddress;
     }
 
-    @OneToMany(mappedBy = "userByUserId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userByUserId", fetch = FetchType.LAZY)
     public Collection<PostEntity> getPostsById() {
         return postsById;
     }
